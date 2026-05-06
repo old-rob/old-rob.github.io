@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archival Image Processor - Robert Oldroyd</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <nav>
+        <div class="container nav-container">
+            <a href="../../index.html" class="nav-brand">Robert Oldroyd</a>
+            <a href="../../projects.html" class="nav-link active">Projects</a>
+            <a href="../../skills.html" class="nav-link">Skills</a>
+        </div>
+    </nav>
+
+    <main class="container project-content">
+        <h1>Archival Painting Processor</h1>
+        <p>A specialized computer vision tool designed to automate the digitization and deskewing of physical artwork
+            for virtual museum environments.</p>
+
+        <section>
+            <h2>The Challenge</h2>
+            <p>Archiving physical art often involves photography that introduces perspective distortion and manual
+                cropping errors. The goal was to create a workflow that could handle large batches of images while
+                ensuring high fidelity for a virtual museum showcase.</p>
+
+            <h2>Technical Features</h2>
+            <ul>
+                <li><strong>Automated Corner Detection:</strong> Developed a Python-based algorithm to identify the
+                    boundaries of paintings within raw archival photos.</li>
+                <li><strong>Perspective Correction:</strong> Implemented deskewing logic to transform angled photographs
+                    into perfectly rectangular, front-facing digital assets.</li>
+                <li><strong>Hybrid Human-in-the-Loop GUI:</strong> Built a custom Tkinter interface allowing
+                    non-technical users to verify detections and manually adjust corner points for pixel-perfect
+                    accuracy.</li>
+            </ul>
+
+            <br>
+            <h2>Impact & Collaboration</h2>
+            <ul>
+                <li><strong>Legacy Preservation:</strong> Successfully processed a collection of my grandmother's
+                    artwork, creating cleaned digital copies for long-term storage.</li>
+                <li><strong>User-Centric Design:</strong> Focused on accessibility, ensuring the tool could be operated
+                    by family members and collaborators without programming experience.</li>
+                <li><strong>Virtual Ready:</strong> Optimized output images for seamless integration into 3D virtual
+                    museum software.</li>
+            </ul>
+        </section>
+
+        <br>
+        <h2>Gallery</h2>
+        <div class="project-gallery">
+            <img src="deskew_painting_1.png" alt="Program working on painting of mountains" class="gallery-item">
+            <img src="deskew_painting_2.png" alt="Program working on painting of flowers" class="gallery-item">
+        </div>
+
+        <div class="project-meta-footer">
+            <h3>Technologies Used</h3>
+            <div id="archival-skills" class="project-skills"></div>
+        </div>
+    </main>
+
+    <script src="../../data.js"></script>
+    <script src="../../main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectData = portfolioData.projects.find(p => p.id === 'painting_archive_tool');
+            if (projectData) {
+                document.getElementById('archival-skills').innerHTML = renderSkillTags(projectData.skills, "../../");
+            }
+        });
+    </script>
+</body>
+
+</html>

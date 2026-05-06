@@ -24,7 +24,7 @@ const portfolioData = {
             title: "Baffall",
             shortDesc: "A solo-developed word search game blending Tetris and Boggle mechanics.",
             url: "/projects/baffall/",
-            date: "2026-04",
+            date: "2025-06",
             skills: ["godot", "mobile_app", "game_development", "sdk_integration"]
         },
         {
@@ -32,7 +32,7 @@ const portfolioData = {
             title: "CPTAC Python Package",
             shortDesc: "Data engineering and core architecture improvements for cancer research datasets.",
             url: "/projects/cptac/",
-            date: "2025-08",
+            date: "2022-01",
             skills: ["python", "git"]
         },
         {
@@ -42,6 +42,14 @@ const portfolioData = {
             url: "/projects/nphd/",
             date: "2025-10",
             skills: ["html_css", "javascript"]
+        },
+        {
+            id: "painting_archive_tool",
+            title: "Painting Archive Tool",
+            shortDesc: "A tool to aid cleanup of archival painting photography.",
+            url: "/projects/painting_archive_tool/",
+            date: "2026-04",
+            skills: ["python"]
         }
     ]
 };
