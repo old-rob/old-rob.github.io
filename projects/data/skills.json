@@ -1,0 +1,22 @@
+{
+  "javascript": {
+    "name": "JavaScript",
+    "categories": ["Programming Languages", "Frontend", "Web Development"]
+  },
+  "python": {
+    "name": "Python",
+    "categories": ["Programming Languages", "Backend", "Data Science"]
+  },
+  "react": {
+    "name": "React",
+    "categories": ["Frameworks", "Frontend", "Web Development"]
+  },
+  "node": {
+    "name": "Node.js",
+    "categories": ["Backend", "Web Development"]
+  },
+  "css": {
+    "name": "CSS",
+    "categories": ["Design", "UX", "Web Development"]
+  }
+}

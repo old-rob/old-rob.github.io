@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills - Robert Oldroyd</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Robert Oldroyd</h1>
+            <p class="subtitle">Software Engineer</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="projects.html" class="nav-btn">Projects</a>
+            <a href="skills.html" class="nav-btn active">Skills</a>
+            <a href="contact.html" class="nav-btn">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>My Skills</h2>
+        
+        <!-- Filters -->
+        <div class="filters-container">
+            <div class="filter-group">
+                <span class="filter-label">Search:</span>
+                <input type="text" class="search-box" id="skill-search" placeholder="Search skills..." onkeyup="filterSkills()">
+            </div>
+            
+            <div class="filter-group">
+                <span class="filter-label">Category:</span>
+                <div class="filter-buttons" id="category-filters">
+                    <button class="filter-btn active" onclick="filterByCategory('all')">All</button>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <span class="filter-label">Level:</span>
+                <div class="filter-buttons" id="level-filters">
+                    <button class="filter-btn active" onclick="filterByLevel('all')">All</button>
+                    <button class="filter-btn" onclick="filterByLevel('Beginner')">Beginner</button>
+                    <button class="filter-btn" onclick="filterByLevel('Intermediate')">Intermediate</button>
+                    <button class="filter-btn" onclick="filterByLevel('Advanced')">Advanced</button>
+                    <button class="filter-btn" onclick="filterByLevel('Expert')">Expert</button>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <span class="filter-label">Sort by:</span>
+                <select class="filter-select" id="sort-select" onchange="filterSkills()">
+                    <option value="name">Name (A-Z)</option>
+                    <option value="level">Proficiency Level</option>
+                    <option value="category">Category</option>
+                    <option value="projects">Most Used</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="skills-count" id="skills-count"></div>
+        <div id="skills-container" class="skills-grid">
+            <!-- Skills will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="tooltip"></div>
+
+    <script>
+        // Skills data
+        let skills = [
+            { name: "React", level: "Advanced", category: "Frontend" },
+            { name: "JavaScript", level: "Expert", category: "Frontend" },
+            { name: "Node.js", level: "Advanced", category: "Backend" },
+            { name: "Python", level: "Expert", category: "Backend" },
+            { name: "MongoDB", level: "Intermediate", category: "Database" },
+            { name: "PostgreSQL", level: "Advanced", category: "Database" },
+            { name: "CSS", level: "Advanced", category: "Frontend" },
+            { name: "HTML", level: "Expert", category: "Frontend" },
+            { name: "Express", level: "Beginner", category: "Backend" },
+            { name: "Git", level: "Expert", category: "Tools" },
+            { name: "Docker", level: "Intermediate", category: "DevOps" },
+            { name: "AWS", level: "Intermediate", category: "DevOps" },
+            { name: "Figma", level: "Beginner", category: "Design" },
+            { name: "Photoshop", level: "Intermediate", category: "Design" },
+            { name: "Kubernetes", level: "Intermediate", category: "DevOps" },
+            { name: "TypeScript", level: "Intermediate", category: "Frontend" },
+        ];
+
+        // Projects data for tooltip functionality
+        let projects = [
+            {
+                id: 1,
+                title: "E-commerce Website",
+                date: "2024-01-15",
+                skills: ["React", "Node.js", "MongoDB", "Express", "JavaScript", "CSS"]
+            },
+            {
+                id: 2,
+                title: "Task Management App",
+                date: "2023-11-20",
+                skills: ["React", "Socket.io", "PostgreSQL", "Node.js", "JavaScript", "HTML"]
+            }
+        ];
+
+        let currentFilters = {
+            category: 'all',
+            level: 'all',
+            search: '',
+            sort: 'name'
+        };
+
+        // Load and display skills
+        function loadSkills() {
+            updateCategoryFilters();
+            filterSkills();
+        }
+
+        function updateCategoryFilters() {
+            const categories = ['all', ...new Set(skills.map(skill => skill.category))];
+            const categoryFilters = document.getElementById('category-filters');
+            
+            categoryFilters.innerHTML = categories.map(category => `
+                <button class="filter-btn ${currentFilters.category === category ? 'active' : ''}" 
+                        onclick="filterByCategory('${category}')">
+                    ${category.charAt(0).toUpperCase() + category.slice(1)}
+                </button>
+            `).join('');
+        }
+
+        function filterSkills() {
+            const searchTerm = document.getElementById('skill-search').value.toLowerCase();
+            const sortBy = document.getElementById('sort-select').value;
+            
+            currentFilters.search = searchTerm;
+            currentFilters.sort = sortBy;
+
+            let filteredSkills = skills.filter(skill => {
+                const matchesCategory = currentFilters.category === 'all' || skill.category === currentFilters.category;
+                const matchesLevel = currentFilters.level === 'all' || skill.level === currentFilters.level;
+                const matchesSearch = skill.name.toLowerCase().includes(searchTerm);
+                
+                return matchesCategory && matchesLevel && matchesSearch;
+            });
+
+            // Sort skills
+            filteredSkills.sort((a, b) => {
+                switch (sortBy) {
+                    case 'name':
+                        return a.name.localeCompare(b.name);
+                    case 'level':
+                        const levelOrder = { 'Beginner': 1, 'Intermediate': 2, 'Advanced': 3, 'Expert': 4 };
+                        return levelOrder[b.level] - levelOrder[a.level];
+                    case 'category':
+                        return a.category.localeCompare(b.category) || a.name.localeCompare(b.name);
+                    case 'projects':
+                        const aCount = projects.filter(p => p.skills.includes(a.name)).length;
+                        const bCount = projects.filter(p => p.skills.includes(b.name)).length;
+                        return bCount - aCount;
+                    default:
+                        return 0;
+                }
+            });
+
+            const container = document.getElementById('skills-container');
+            const countContainer = document.getElementById('skills-count');
+            
+            countContainer.textContent = `Showing ${filteredSkills.length} of ${skills.length} skills`;
+            
+            container.innerHTML = filteredSkills.map(skill => `
+                <div class="skill-card" 
+                     onmouseenter="showSkillTooltip(event, '${skill.name}')" 
+                     onmouseleave="startHideTooltip()">
+                    <div class="skill-name">${skill.name}</div>
+                    <div class="skill-level">${skill.level}</div>
+                    <div class="skill-category">${skill.category}</div>
+                </div>
+            `).join('');
+        }
+
+        function filterByCategory(category) {
+            currentFilters.category = category;
+            
+            // Update active states
+            document.querySelectorAll('#category-filters .filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            filterSkills();
+        }
+
+        function filterByLevel(level) {
+            currentFilters.level = level;
+            
+            // Update active states
+            document.querySelectorAll('#level-filters .filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            filterSkills();
+        }
+
+        // Tooltip functions
+        let tooltipTimeout;
+
+        function showSkillTooltip(event, skillName) {
+            clearTimeout(tooltipTimeout);
+            
+            const skillProjects = projects.filter(project => 
+                project.skills.includes(skillName)
+            ).sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            if (skillProjects.length === 0) return;
+
+            const tooltip = document.getElementById('tooltip');
+            tooltip.innerHTML = `
+                <strong>Projects using ${skillName}:</strong><br>
+                ${skillProjects.map(project => 
+                    `<div class="tooltip-project" onclick="goToProject(${project.id})">${project.title} (${formatDate(project.date)})</div>`
+                ).join('')}
+            `;
+
+            // Show tooltip first to get its dimensions
+            tooltip.classList.add('show');
+            
+            const rect = event.target.getBoundingClientRect();
+            const tooltipRect = tooltip.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+            
+            // Position tooltip above the skill card by default
+            let left = rect.left + scrollLeft + (rect.width / 2) - (tooltipRect.width / 2);
+            let top = rect.top + scrollTop - tooltipRect.height - 10;
+            
+            // Adjust if tooltip would go off screen horizontally
+            if (left < 10) {
+                left = 10;
+            } else if (left + tooltipRect.width > window.innerWidth - 10) {
+                left = window.innerWidth - tooltipRect.width - 10;
+            }
+            
+            // If no room above, show below
+            if (top < scrollTop + 10) {
+                top = rect.bottom + scrollTop + 10;
+            }
+            
+            tooltip.style.left = left + 'px';
+            tooltip.style.top = top + 'px';
+        }
+
+        function startHideTooltip() {
+            tooltipTimeout = setTimeout(() => {
+                hideTooltip();
+            }, 300);
+        }
+
+        function hideTooltip() {
+            document.getElementById('tooltip').classList.remove('show');
+        }
+
+        function goToProject(projectId) {
+            // Navigate to projects page with project detail
+            window.location.href = `projects.html#project-${projectId}`;
+        }
+
+        // Keep tooltip visible when hovering over it
+        document.getElementById('tooltip').addEventListener('mouseenter', function() {
+            clearTimeout(tooltipTimeout);
+        });
+
+        document.getElementById('tooltip').addEventListener('mouseleave', function() {
+            hideTooltip();
+        });
+
+        // Format date
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSkills();
+        });
+    </script>
+</body>
+</html>

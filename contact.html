@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Robert Oldroyd</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Robert Oldroyd</h1>
+            <p class="subtitle">Software Engineer</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="projects.html" class="nav-btn">Projects</a>
+            <a href="skills.html" class="nav-btn">Skills</a>
+            <a href="contact.html" class="nav-btn active">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Get In Touch</h2>
+
+        <div class="project-detail">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+                <div>
+                    <h3 style="margin-bottom: 1.5rem;">Let's Connect</h3>
+                    <p style="margin-bottom: 2rem; color: #666;">
+                        I'm always interested in new opportunities and interesting projects.
+                        Feel free to reach out if you'd like to work together!
+                    </p>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="margin-bottom: 1rem;">Professional Links</h4>
+                        <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                            <a href="https://www.linkedin.com/in/robert-oldroyd/" target="_blank"
+                                style="color: #667eea; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+                                📧 LinkedIn Profile
+                            </a>
+                            <a href="https://github.com/old-rob" target="_blank"
+                                style="color: #667eea; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+                                💼 GitHub Profile
+                            </a>
+
+                            <a href="mailto:oldroydrobert@gmail.com"
+                                style="color: #667eea; display: flex; text-decoration: none; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                ✉️ oldroydrobert@gmail.com
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 style="margin-bottom: 1rem;">Quick Response Form</h4>
+                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                            Send me a message and I'll get back to you within 24 hours.
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <form id="contact-form" style="background: #f8f9fa; padding: 2rem; border-radius: 10px;">
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Name</label>
+                            <input type="text" id="contact-name" required
+                                style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email</label>
+                            <input type="email" id="contact-email" required
+                                style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Subject</label>
+                            <select id="contact-subject"
+                                style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;">
+                                <option value="job-opportunity">Job Opportunity</option>
+                                <option value="collaboration">Collaboration</option>
+                                <option value="question">Question</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Message</label>
+                            <textarea id="contact-message" required
+                                style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; height: 120px; resize: vertical;"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+
+                        <p style="font-size: 0.8rem; color: #666; margin-top: 1rem; text-align: center;">
+                            Your message will be formatted and copied to your clipboard.<br>
+                            You can then paste it into your preferred email client.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const subject = document.getElementById('contact-subject').value;
+            const message = document.getElementById('contact-message').value;
+
+            // Format the message
+            const formattedMessage = `
+Hi,
+
+My name is ${name} and I'm reaching out regarding: ${subject}
+
+${message}
+
+Best regards,
+${name}
+${email}
+            `.trim();
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(formattedMessage).then(() => {
+                alert('Message formatted and copied to clipboard! You can now paste it into your email client.');
+
+                // Reset form
+                document.getElementById('contact-form').reset();
+                generateMathQuestion();
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = formattedMessage;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                alert('Message formatted and copied to clipboard! You can now paste it into your email client.');
+                document.getElementById('contact-form').reset();
+                generateMathQuestion();
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            generateMathQuestion();
+        });
+    </script>
+</body>
+
+</html>

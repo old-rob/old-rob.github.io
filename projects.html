@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Robert Oldroyd</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Robert Oldroyd</h1>
+            <p class="subtitle">Software Engineer</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="projects.html" class="nav-btn active">Projects</a>
+            <a href="skills.html" class="nav-btn">Skills</a>
+            <a href="contact.html" class="nav-btn">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>My Projects</h2>
+        <div id="projects-container">
+            <!-- Projects will be dynamically loaded here -->
+        </div>
+
+        <!-- Project Detail View (hidden by default) -->
+        <div id="project-detail" class="page" style="display: none;">
+            <button class="btn" onclick="showProjectsList()">← Back to Projects</button>
+            <div id="project-detail-content">
+                <!-- Project details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="tooltip"></div>
+
+    <script>
+        // Projects data
+        let projects = [
+            {
+                id: 1,
+                title: "E-commerce Website",
+                date: "2024-01-15",
+                description: "A full-stack e-commerce platform with user authentication, product catalog, and payment integration.",
+                details: "Built a comprehensive e-commerce platform using React for the frontend and Node.js with Express for the backend. Implemented user authentication with JWT tokens, integrated Stripe for payment processing, and used MongoDB for data storage. Features include product search, filtering, shopping cart, order management, and admin dashboard.",
+                skills: ["React", "Node.js", "MongoDB", "Express", "JavaScript", "CSS"]
+            },
+            {
+                id: 2,
+                title: "Task Management App",
+                date: "2023-11-20",
+                description: "A collaborative task management application with real-time updates and team features.",
+                details: "Developed a real-time task management application using React and Socket.io for live updates. Implemented drag-and-drop functionality for task organization, team collaboration features, and deadline tracking. Used PostgreSQL for data persistence and implemented REST API with comprehensive error handling.",
+                skills: ["React", "Socket.io", "PostgreSQL", "Node.js", "JavaScript", "HTML"]
+            }
+        ];
+
+        // Load and display projects
+        function loadProjects() {
+            const container = document.getElementById('projects-container');
+            const sortedProjects = [...projects].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            container.innerHTML = sortedProjects.map(project => `
+                <div class="project-card" onclick="showProjectDetail(${project.id})">
+                    <div class="project-header">
+                        <div>
+                            <div class="project-title">${project.title}</div>
+                            <div class="project-date">${formatDate(project.date)}</div>
+                        </div>
+                    </div>
+                    <div class="project-description">${project.description}</div>
+                    <div class="project-skills">
+                        ${project.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Show project detail
+        function showProjectDetail(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+
+            document.getElementById('project-detail-content').innerHTML = `
+                <div class="project-detail">
+                    <h2>${project.title}</h2>
+                    <p class="project-date" style="margin-bottom: 1rem; color: #666;">${formatDate(project.date)}</p>
+                    <div style="margin-bottom: 2rem;">
+                        ${project.details.split('\n').map(paragraph => `<p style="margin-bottom: 1rem;">${paragraph}</p>`).join('')}
+                    </div>
+                    <h3 style="margin-bottom: 1rem;">Technologies Used</h3>
+                    <div class="project-skills">
+                        ${project.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('projects-container').style.display = 'none';
+            document.querySelector('h2').style.display = 'none';
+            document.getElementById('project-detail').style.display = 'block';
+        }
+
+        // Show projects list
+        function showProjectsList() {
+            document.getElementById('projects-container').style.display = 'block';
+            document.querySelector('h2').style.display = 'block';
+            document.getElementById('project-detail').style.display = 'none';
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProjects();
+        });
+    </script>
+</body>
+</html>
