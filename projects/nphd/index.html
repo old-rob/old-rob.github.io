@@ -19,28 +19,34 @@
 
     <main class="container project-content">
         <h1>nphd.top</h1>
-        <p>A manifesto for independent thinkers and autodidacts[cite: 8].</p>
+        <p>A minimal, fast, and fun website that displays comics and includes an ecommerce store.</p>
 
         <div
             style="background: #1a202c; color: white; padding: 2rem; border-radius: 8px; margin: 2rem 0; text-align: center;">
-            <h3 style="color: white; margin-bottom: 1rem;">"A zero-dependency stack for a zero-bloat message."[cite: 8]
-            </h3>
+            <h3 style="color: white; margin-bottom: 1rem;">"Minimal structure, maximal signal."</h3>
+            <a href="https://nphd.top" target="_blank" style="color: #63b3ed; text-decoration: none;">Visit nphd.top
+                &rarr;</a>
         </div>
 
         <section>
-            <h2>Project Scope</h2>
-            <p>I designed and deployed <strong>nphd.top</strong> to offer a focused alternative path for researchers
-                outside academia. The project required a blend of thoughtful content and performance-oriented
-                development[cite: 8].</p>
-
-            <h2>Design & Execution</h2>
+            <h2>Design & UX</h2>
             <ul>
-                <li><strong>Custom Typography:</strong> Designed a custom typeface specifically for this site to reflect
-                    its independent voice[cite: 8].</li>
-                <li><strong>Zero-Dependency Stack:</strong> Hand-coded with semantic HTML and CSS to ensure stability
-                    and extreme performance[cite: 8].</li>
-                <li><strong>UX Clarity:</strong> Created a distraction-free layout to maximize the signal-to-noise ratio
-                    of the content[cite: 8].</li>
+                <li><strong>Custom Layout:</strong> Built from scratch to emphasize content over bloat, ensuring a
+                    distraction-free experience.</li>
+                <li><strong>Custom Typeface:</strong> Designed a bespoke typeface specifically for this site to
+                    reinforce its independent, hand-crafted aesthetic.</li>
+            </ul>
+
+            <h2>Development & Deployment</h2>
+            <ul>
+                <li><strong>SEO:</strong> Managed Search Engine Optimization to get a brand new website with a less
+                    common domain ending (.top) to consistently rank well in searches.</li>
+                <li><strong>Zero-Dependency Stack:</strong> Hand-coded using clean, semantic HTML and CSS with no
+                    external frameworks, ensuring extreme performance and stability.</li>
+                <li><strong>Full-Stack Ownership:</strong> Managed the entire pipeline, from custom domain routing and
+                    HTTPS setup to ecommerce integration.</li>
+                <li><strong>Performance Optimized:</strong> Built for high readability and accessibility with a focus on
+                    fast load times.</li>
             </ul>
         </section>
 
@@ -55,7 +61,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const projectData = portfolioData.projects.find(p => p.id === 'nphd');
-            document.getElementById('nphd-skills').innerHTML = renderSkillTags(projectData.skills, "../../");
+            if (projectData) {
+                document.getElementById('nphd-skills').innerHTML = renderSkillTags(projectData.skills, "../../");
+            }
         });
     </script>
 </body>
