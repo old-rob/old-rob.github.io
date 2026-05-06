@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nphd.top - Robert Oldroyd</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <nav>
+        <div class="container nav-container">
+            <a href="../../index.html" class="nav-brand">Robert Oldroyd</a>
+            <a href="../../projects.html" class="nav-link active">Projects</a>
+            <a href="../../skills.html" class="nav-link">Skills</a>
+        </div>
+    </nav>
+
+    <main class="container project-content">
+        <h1>nphd.top</h1>
+        <p>A manifesto for independent thinkers and autodidacts[cite: 8].</p>
+
+        <div
+            style="background: #1a202c; color: white; padding: 2rem; border-radius: 8px; margin: 2rem 0; text-align: center;">
+            <h3 style="color: white; margin-bottom: 1rem;">"A zero-dependency stack for a zero-bloat message."[cite: 8]
+            </h3>
+        </div>
+
+        <section>
+            <h2>Project Scope</h2>
+            <p>I designed and deployed <strong>nphd.top</strong> to offer a focused alternative path for researchers
+                outside academia. The project required a blend of thoughtful content and performance-oriented
+                development[cite: 8].</p>
+
+            <h2>Design & Execution</h2>
+            <ul>
+                <li><strong>Custom Typography:</strong> Designed a custom typeface specifically for this site to reflect
+                    its independent voice[cite: 8].</li>
+                <li><strong>Zero-Dependency Stack:</strong> Hand-coded with semantic HTML and CSS to ensure stability
+                    and extreme performance[cite: 8].</li>
+                <li><strong>UX Clarity:</strong> Created a distraction-free layout to maximize the signal-to-noise ratio
+                    of the content[cite: 8].</li>
+            </ul>
+        </section>
+
+        <div class="project-meta-footer">
+            <h3>Technologies Used</h3>
+            <div id="nphd-skills" class="project-skills"></div>
+        </div>
+    </main>
+
+    <script src="../../data.js"></script>
+    <script src="../../main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectData = portfolioData.projects.find(p => p.id === 'nphd');
+            document.getElementById('nphd-skills').innerHTML = renderSkillTags(projectData.skills, "../../");
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPTAC Package - Robert Oldroyd</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <a href="../../index.html" class="nav-brand">Robert Oldroyd</a>
+            <a href="../../projects.html" class="nav-link active">Projects</a>
+            <a href="../../skills.html" class="nav-link">Skills</a>
+        </div>
+    </nav>
+
+    <main class="container project-content">
+        <h1>CPTAC Python Package</h1>
+        <p><strong>Payne Lab, BYU</strong> | Data Engineering & Architecture</p>
+
+        <section>
+            <h2>The Challenge</h2>
+            <p>The Clinical Proteomic Tumor Analysis Consortium (CPTAC) generates massive amounts of proteogenomic data. Researchers needed a more reliable, standardized way to access and join these complex datasets.</p>
+            
+            <h2>Key Contributions</h2>
+            <ul>
+                <li><strong>Dataset Integration:</strong> Integrated confirmatory GBM and PDAC cohorts[cite: 7].</li>
+                <li><strong>Core Refactoring:</strong> Modernized the codebase, removing deprecated functions and standardizing docstrings for better maintainability[cite: 7].</li>
+                <li><strong>Data Integrity:</strong> Implemented <code>'latest'</code> source logic and fixed critical bugs in <code>join_metadata_to_omics</code>[cite: 7].</li>
+                <li><strong>Domain Logic:</strong> Developed specific handling for HNSCC normal tissue types to improve scientific accuracy in annotations[cite: 7].</li>
+            </ul>
+        </section>
+
+        <div class="project-meta-footer">
+            <h3>Technologies Used</h3>
+            <div id="cptac-skills" class="project-skills"></div>
+        </div>
+    </main>
+
+    <script src="../../data.js"></script>
+    <script src="../../main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectData = portfolioData.projects.find(p => p.id === 'cptac');
+            document.getElementById('cptac-skills').innerHTML = renderSkillTags(projectData.skills, "../../");
+        });
+    </script>
+</body>
+</html>

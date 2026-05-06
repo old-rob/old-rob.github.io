@@ -15,7 +15,7 @@ const portfolioData = {
             shortDesc: "A solo-developed word search game blending Tetris and Boggle mechanics.",
             url: "/projects/baffall/",
             date: "2026-04",
-            skills: ["godot", "python"]
+            skills: ["godot", "mobile_app", "game_development", "sdk_integration"]
         },
         {
             id: "cptac",
@@ -23,7 +23,7 @@ const portfolioData = {
             shortDesc: "Data engineering and core architecture improvements for cancer research datasets.",
             url: "/projects/cptac/",
             date: "2025-08",
-            skills: ["python", "docker", "postgres"]
+            skills: ["python"]
         },
         {
             id: "nphd",
