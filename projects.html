@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - Robert Oldroyd</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header>
         <div class="container">
@@ -59,6 +61,14 @@
                 description: "A collaborative task management application with real-time updates and team features.",
                 details: "Developed a real-time task management application using React and Socket.io for live updates. Implemented drag-and-drop functionality for task organization, team collaboration features, and deadline tracking. Used PostgreSQL for data persistence and implemented REST API with comprehensive error handling.",
                 skills: ["React", "Socket.io", "PostgreSQL", "Node.js", "JavaScript", "HTML"]
+            },
+            {
+                id: 3,
+                title: "Baffall - Word Search Mobile Game",
+                date: "2026-04-29",
+                description: "A solo-developed word search game built in Godot, blending Tetris and Boggle mechanics with AdMob integration.",
+                details: "Baffall is a hybrid gameplay system combining real-time tile dropping with spatial word formation. Developed in Godot, it features custom tile physics, word validation, and difficulty scaling. I handled the full lifecycle from design and programming to UI/UX and publishing on Google Play and Itch.io.",
+                skills: ["Godot", "Mobile App", "Game Development", "SDK Integration"]
             }
         ];
 
@@ -66,7 +76,7 @@
         function loadProjects() {
             const container = document.getElementById('projects-container');
             const sortedProjects = [...projects].sort((a, b) => new Date(b.date) - new Date(a.date));
-            
+
             container.innerHTML = sortedProjects.map(project => `
                 <div class="project-card" onclick="showProjectDetail(${project.id})">
                     <div class="project-header">
@@ -121,9 +131,10 @@
         }
 
         // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             loadProjects();
         });
     </script>
 </body>
+
 </html>
