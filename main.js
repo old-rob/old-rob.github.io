@@ -9,23 +9,26 @@ function renderSkillTags(skillIds, basePath = "") {
     }).join('');
 }
 
-// Renders project cards on the Projects page
+// main.js
+
 function renderProjectGrid(containerId, basePath = "") {
     const container = document.getElementById(containerId);
     if (!container) return;
 
     container.innerHTML = portfolioData.projects.map(proj => `
-        <a href="${basePath}${proj.url}" class="project-card-link">
-            <div class="project-card">
-                <div class="project-header">
-                    <h3 class="project-title">${proj.title}</h3>
-                </div>
-                <p class="project-description">${proj.shortDesc}</p>
-                <div class="project-skills">
-                    ${renderSkillTags(proj.skills, basePath)}
-                </div>
+        <div class="project-card">
+            <!-- The Stretched Link -->
+            <a href="${basePath}${proj.url}" class="main-link" aria-label="View ${proj.title}"></a>
+            
+            <div class="project-header">
+                <h3 class="project-title">${proj.title}</h3>
             </div>
-        </a>
+            <p class="project-description">${proj.shortDesc}</p>
+            
+            <div class="project-skills">
+                ${renderSkillTags(proj.skills, basePath)}
+            </div>
+        </div>
     `).join('');
 }
 
@@ -47,8 +50,11 @@ function initializeSkillsPage() {
         
         container.innerHTML = filteredProjects.map(proj => `
             <div class="project-card">
-                <h3><a href="${proj.url}">${proj.title}</a></h3>
-                <p>${proj.shortDesc}</p>
+                <a href="${proj.url}" class="main-link" aria-label="View ${proj.title}"></a>
+                <div class="project-header">
+                    <h3 class="project-title">${proj.title}</h3>
+                </div>
+                <p class="project-description">${proj.shortDesc}</p>
             </div>
         `).join('');
     } else {

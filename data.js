@@ -3,10 +3,20 @@ const portfolioData = {
     skills: {
         "python": { name: "Python", category: "Backend" },
         "react": { name: "React", category: "Frontend" },
-        "godot": { name: "Godot", category: "Game Development" },
         "html_css": { name: "HTML/CSS", category: "Frontend" },
+        "javascript": { name: "JavaScript", category: "Frontend" },
+        "typescript": { name: "TypeScript", category: "Frontend" },
+        "node": { name: "Node.js", category: "Backend" },
+        "postgres": { name: "PostgreSQL", category: "Database" },
+        "mongodb": { name: "MongoDB", category: "Database" },
         "docker": { name: "Docker", category: "DevOps" },
-        "postgres": { name: "PostgreSQL", category: "Database" }
+        "kubernetes": { name: "Kubernetes", category: "DevOps" },
+        "aws": { name: "AWS", category: "DevOps" },
+        "git": { name: "Git", category: "Version Control" },
+        "godot": { name: "Godot", category: "Game Development" },
+        "figma": { name: "Figma", category: "Design" },
+        "canva": { name: "Canva", category: "Design" },
+        "photoshop": { name: "Photoshop", category: "Design" },
     },
     projects: [
         {
@@ -23,15 +33,15 @@ const portfolioData = {
             shortDesc: "Data engineering and core architecture improvements for cancer research datasets.",
             url: "/projects/cptac/",
             date: "2025-08",
-            skills: ["python"]
+            skills: ["python", "git"]
         },
         {
             id: "nphd",
-            title: "nphd.top",
-            shortDesc: "A distraction-free, typographically focused manifesto and resource site.",
+            title: "NPHD",
+            shortDesc: "A simple, clean, webcomics site with ecommerce.",
             url: "/projects/nphd/",
             date: "2025-10",
-            skills: ["html_css"]
+            skills: ["html_css", "javascript"]
         }
     ]
 };
