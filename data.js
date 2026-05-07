@@ -20,6 +20,14 @@ const portfolioData = {
     },
     projects: [
         {
+            id: "zontal",
+            title: "Professional work at ZONTAL Inc.",
+            shortDesc: "Worked as a software engineer for a subsidiary of Bruker creating data aggregation and visualization applications.",
+            url: "/projects/zontal/",
+            date: "2025-01",
+            skills: ["javascript", "mongodb", "docker", "kubernetes", "aws", "python", "git"]
+        },
+        {
             id: "baffall",
             title: "Baffall",
             shortDesc: "A solo-developed word search game blending Tetris and Boggle mechanics.",
